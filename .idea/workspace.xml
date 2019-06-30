@@ -1,19 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4ac71611-3c61-4e89-8bb8-a0d1d3f1d9a4" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/DQN_GP_batch.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Research/Qlearn_GP_batch.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/Qlearn_GP_batch.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Research/Qlearn_GP_online.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/Qlearn_GP_online.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Research/Qlearn_simple_estimate_moments.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/Qlearn_simple_estimate_moments.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Research/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Research/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Research/gaussian_process.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/gaussian_process.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Research/gp_eager_way.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/gp_eager_way.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Research/gp_tf_keras_seq_way.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/gp_tf_keras_seq_way.py" afterDir="false" />
-    </list>
+    <list default="true" id="4ac71611-3c61-4e89-8bb8-a0d1d3f1d9a4" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,8 +13,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/DQN_GP_batch.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="200">
-              <caret line="20" column="44" selection-start-line="20" selection-start-column="44" selection-end-line="20" selection-end-column="44" />
+            <state relative-caret-position="285">
+              <caret line="136" column="17" lean-forward="true" selection-start-line="136" selection-start-column="17" selection-end-line="136" selection-end-column="17" />
               <folding>
                 <element signature="e#0#21#0" expanded="true" />
               </folding>
@@ -66,10 +54,10 @@
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="3839" />
+    <option name="x" value="3891" />
     <option name="y" value="-4" />
-    <option name="width" value="1922" />
-    <option name="height" value="1085" />
+    <option name="width" value="1920" />
+    <option name="height" value="1084" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -96,6 +84,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
@@ -162,14 +151,14 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="3839" y="-4" width="1922" height="1085" extended-state="6" />
+    <frame x="3840" y="-4" width="1920" height="1084" extended-state="6" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.20527704" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.20527704" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="2" visible="true" weight="0.32954547" />
+      <window_info anchor="bottom" id="Terminal" order="2" visible="true" weight="0.32954547" />
       <window_info anchor="bottom" id="Run" order="3" weight="0.32954547" />
       <window_info anchor="bottom" id="Debug" order="4" weight="0.3997934" />
       <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
@@ -220,8 +209,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/DQN_GP_batch.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="200">
-          <caret line="20" column="44" selection-start-line="20" selection-start-column="44" selection-end-line="20" selection-end-column="44" />
+        <state relative-caret-position="285">
+          <caret line="136" column="17" lean-forward="true" selection-start-line="136" selection-start-column="17" selection-end-line="136" selection-end-column="17" />
           <folding>
             <element signature="e#0#21#0" expanded="true" />
           </folding>
