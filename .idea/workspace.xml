@@ -1,17 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4ac71611-3c61-4e89-8bb8-a0d1d3f1d9a4" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/DDPG_GP.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/utils/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/utils/gp_models.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/utils/kernels.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DQN_GP_batch.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/DQN_GP_batch.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Qlearn_GP_batch.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/Qlearn_GP_batch.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gp_eager_way.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/gp_eager_way.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gp_tf_keras_seq_way.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/gp_tf_keras_seq_way.py" afterDir="false" />
-    </list>
+    <list default="true" id="4ac71611-3c61-4e89-8bb8-a0d1d3f1d9a4" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,11 +56,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/utils/gp_models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
-              <caret line="13" column="5" selection-start-line="13" selection-start-column="5" selection-end-line="13" selection-end-column="5" />
+            <state relative-caret-position="187">
+              <caret line="11" column="4" selection-start-line="11" selection-start-column="4" selection-end-line="11" selection-end-column="4" />
               <folding>
                 <element signature="e#0#23#0" expanded="true" />
               </folding>
@@ -78,11 +68,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/utils/kernels.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="64">
-              <caret line="29" column="12" selection-start-line="29" selection-start-column="12" selection-end-line="29" selection-end-column="12" />
+            <state relative-caret-position="196">
+              <caret line="18" column="32" selection-start-line="18" selection-start-column="32" selection-end-line="18" selection-end-column="32" />
               <folding>
                 <element signature="e#0#23#0" expanded="true" />
               </folding>
@@ -111,9 +101,9 @@
         <option value="$PROJECT_DIR$/src/gp_tf_keras_seq_way.py" />
         <option value="$PROJECT_DIR$/src/DDPG_GP.py" />
         <option value="$PROJECT_DIR$/utils/__init__.py" />
-        <option value="$PROJECT_DIR$/utils/gp_models.py" />
         <option value="$PROJECT_DIR$/src/DQN_GP_batch.py" />
         <option value="$PROJECT_DIR$/src/Qlearn_GP_batch.py" />
+        <option value="$PROJECT_DIR$/utils/gp_models.py" />
         <option value="$PROJECT_DIR$/utils/kernels.py" />
       </list>
     </option>
@@ -330,8 +320,8 @@
       <window_info id="Structure" order="2" sideWeight="0.50103307" side_tool="true" weight="0.19358289" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Terminal" order="2" weight="0.30165288" />
-      <window_info anchor="bottom" id="Run" order="3" visible="true" weight="0.32954547" />
+      <window_info anchor="bottom" id="Terminal" order="2" visible="true" weight="0.30165288" />
+      <window_info anchor="bottom" id="Run" order="3" weight="0.32954547" />
       <window_info anchor="bottom" id="Debug" order="4" weight="0.3997934" />
       <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="6" weight="0.4" />
@@ -446,20 +436,20 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/utils/kernels.py">
+    <entry file="file://$PROJECT_DIR$/utils/gp_models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="64">
-          <caret line="29" column="12" selection-start-line="29" selection-start-column="12" selection-end-line="29" selection-end-column="12" />
+        <state relative-caret-position="187">
+          <caret line="11" column="4" selection-start-line="11" selection-start-column="4" selection-end-line="11" selection-end-column="4" />
           <folding>
             <element signature="e#0#23#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/utils/gp_models.py">
+    <entry file="file://$PROJECT_DIR$/utils/kernels.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="13" column="5" selection-start-line="13" selection-start-column="5" selection-end-line="13" selection-end-column="5" />
+        <state relative-caret-position="196">
+          <caret line="18" column="32" selection-start-line="18" selection-start-column="32" selection-end-line="18" selection-end-column="32" />
           <folding>
             <element signature="e#0#23#0" expanded="true" />
           </folding>
