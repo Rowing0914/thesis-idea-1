@@ -10,29 +10,26 @@ from tf_rl.common.networks import CartPole as Model
 from tf_rl.agents.DQN import DQN_cartpole
 from utils.kernels import RBFKernelFn
 from utils.gp_models import create_model
+from utils.common import flatten_weight
 
 tfd = tfp.distributions
 
 eager_setup()
 
 parser = argparse.ArgumentParser()
-parser.add_argument("--mode", default="CartPole", help="game env type: Atari or CartPole")
+parser.add_argument("--env_name", default="CartPole-v0", help="game env Atari games or CartPole")
 parser.add_argument("--seed", default=123, help="seed of randomness")
 parser.add_argument("--loss_fn", default="huber", help="types of loss function: MSE or huber")
-parser.add_argument("--grad_clip_flg", default="",
-                    help="gradient clippings: by value(by_value) or global norm(norm) or nothing")
+parser.add_argument("--grad_clip_flg", default="", help="gradient clippings: by_value or norm or nothing")
 parser.add_argument("--num_frames", default=30000, type=int, help="total frame in a training")
 parser.add_argument("--train_interval", default=1, type=int, help="a frequency of training occurring in training phase")
-parser.add_argument("--eval_interval", default=2500, type=int,
-                    help="a frequency of evaluation occurring in training phase")  # temp
+parser.add_argument("--eval_interval", default=2500, type=int, help="a frequency of evaluation in training phase")
 parser.add_argument("--memory_size", default=5000, type=int, help="memory size in a training")
-parser.add_argument("--learning_start", default=100, type=int,
-                    help="frame number which specifies when to start updating the agent")
+parser.add_argument("--learning_start", default=100, type=int, help="when to start learning")
 parser.add_argument("--sync_freq", default=1000, type=int, help="frequency of updating a target model")
 parser.add_argument("--batch_size", default=32, type=int, help="batch size of each iteration of update")
 parser.add_argument("--reward_buffer_ep", default=10, type=int, help="reward_buffer size")
-parser.add_argument("--gamma", default=0.99, type=float,
-                    help="discount factor: gamma > 1.0 or negative => does not converge!!")
+parser.add_argument("--gamma", default=0.99, type=float, help="discount factor")
 parser.add_argument("--tau", default=1e-2, type=float, help="soft update tau")
 parser.add_argument("--ep_start", default=1.0, type=float, help="initial value of epsilon")
 parser.add_argument("--ep_end", default=0.02, type=float, help="final value of epsilon")
@@ -46,15 +43,15 @@ params.goal = 195
 params.test_episodes = 20
 
 # init global time-step
-global_timestep = tf.train.get_or_create_global_step()
+global_timestep = tf.compat.v1.train.get_or_create_global_step()
 
 # instantiate annealing funcs for ep and lr
-anneal_ep = tf.train.polynomial_decay(params.ep_start, global_timestep, params.decay_steps, params.ep_end)
-anneal_lr = tf.train.polynomial_decay(params.lr_start, global_timestep, params.decay_steps, params.lr_end)
+anneal_ep = tf.compat.v1.train.polynomial_decay(params.ep_start, global_timestep, params.decay_steps, params.ep_end)
+anneal_lr = tf.compat.v1.train.polynomial_decay(params.lr_start, global_timestep, params.decay_steps, params.lr_end)
 
 # prep for training
 policy = EpsilonGreedyPolicy_eager(Epsilon_fn=anneal_ep)
-optimizer = tf.train.RMSPropOptimizer(anneal_lr, 0.99, 0.0, 1e-6)
+optimizer = tf.compat.v1.train.RMSPropOptimizer(anneal_lr, 0.99, 0.0, 1e-6)
 replay_buffer = ReplayBuffer(params.memory_size)
 reward_buffer = deque(maxlen=params.reward_buffer_ep)
 loss_fn = create_loss_func(params.loss_fn)
@@ -69,21 +66,23 @@ params.model_dir = "../logs/models/" + now.strftime("%Y%m%d-%H%M%S") + "-DQN_GP/
 summary_writer = tf.contrib.summary.create_file_writer(params.log_dir)
 
 # instantiate agent and env
-env = MyWrapper(gym.make("CartPole-v0"))
+env = MyWrapper(gym.make(params.env_name))
 agent = DQN_cartpole(Model, optimizer, loss_fn, grad_clip_fn, env.action_space.n, params)
 
 # set seed
 env.seed(params.seed)
 tf.random.set_random_seed(params.seed)
 
-gp_model = create_model(kernel_fn=RBFKernelFn)
+init_state = env.reset() # reset
+agent.predict(init_state) # burn the format of the input matrix to get the weight matrices!!
+gp_model = create_model(weights=agent.main_model.get_weights(), kernel_fn=RBFKernelFn)
 batch_size = 32
 num_epochs = 200
 num_sample = 100  # number of sampling
 
 get_ready(agent.params)
 time_buffer = list()
-global_timestep = tf.train.get_or_create_global_step()
+global_timestep = tf.compat.v1.train.get_or_create_global_step()
 log = logger(agent.params)
 
 with summary_writer.as_default():
@@ -137,10 +136,8 @@ with summary_writer.as_default():
 
             if agent.main_model.get_weights() != []:  # initially the weights are empty, so exclude it explicitly
                 scores.append(total_reward)  # save the reward which has the same amount as `policies` buffer
-                weights_vec = np.array([])  # save the weights used in the Q-net
-                for weight in agent.main_model.get_weights():
-                    weights_vec = np.concatenate([weights_vec, weight.flatten()])
-                policies.append(weights_vec.tolist())
+                weights_vec = flatten_weight(agent.main_model.get_weights())
+                policies.append(weights_vec)
 
             # === Train the GP Net ===
             if len(policies) > batch_size:

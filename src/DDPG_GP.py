@@ -7,6 +7,9 @@ from tf_rl.common.utils import *
 from tf_rl.agents.DDPG import DDPG
 from tf_rl.common.params import DDPG_ENV_LIST
 from tf_rl.common.networks import DDPG_Actor as Actor, DDPG_Critic as Critic
+from utils.kernels import RBFKernelFn
+from utils.gp_models import create_model
+from utils.common import flatten_weight
 
 eager_setup()
 
@@ -41,8 +44,6 @@ parser.add_argument("--gamma", default=0.99, type=float, help="discount factor")
 parser.add_argument("--soft_update_tau", default=1e-2, type=float, help="soft-update tau ")
 parser.add_argument("--L2_reg", default=0.5, type=float, help="magnitude of L2 regularisation")
 parser.add_argument("--action_range", default=[-1., 1.], type=list, help="magnitude of L2 regularisation")
-parser.add_argument("--log_dir", default="../../logs/logs/DDPG/", help="directory for log")
-parser.add_argument("--model_dir", default="../../logs/models/DDPG/", help="directory for trained model")
 parser.add_argument("--debug_flg", default=False, type=bool, help="debug mode or not")
 parser.add_argument("--google_colab", default=False, type=bool, help="if you are executing this on GoogleColab")
 params = parser.parse_args()
@@ -52,11 +53,11 @@ params.goal = DDPG_ENV_LIST[params.env_name]
 now = datetime.datetime.now()
 
 if params.debug_flg:
-    params.log_dir = "../../logs/logs/" + now.strftime("%Y%m%d-%H%M%S") + "-DDPG/"
-    params.model_dir = "../../logs/models/" + now.strftime("%Y%m%d-%H%M%S") + "-DDPG/"
+    params.log_dir = "../logs/logs/" + now.strftime("%Y%m%d-%H%M%S") + "-DDPG/"
+    params.model_dir = "../logs/models/" + now.strftime("%Y%m%d-%H%M%S") + "-DDPG/"
 else:
-    params.log_dir = "../../logs/logs/{}".format(params.env_name)
-    params.model_dir = "../../logs/models/{}".format(params.env_name)
+    params.log_dir = "../logs/logs/{}".format(params.env_name)
+    params.model_dir = "../logs/models/{}".format(params.env_name)
 
 env = gym.make(params.env_name)
 
@@ -69,6 +70,13 @@ replay_buffer = ReplayBuffer(params.memory_size)
 reward_buffer = deque(maxlen=params.reward_buffer_ep)
 summary_writer = tf.contrib.summary.create_file_writer(params.log_dir)
 
+init_state = env.reset() # reset
+agent.predict(init_state) # burn the format of the input matrix to get the weight matrices!!
+gp_model = create_model(weights=agent.actor.get_weights(), kernel_fn=RBFKernelFn)
+batch_size = 32
+num_epochs = 10 # number of training of GP
+num_sample = 100  # number of sampling
+
 get_ready(agent.params)
 
 global_timestep = tf.compat.v1.train.get_or_create_global_step()
@@ -78,7 +86,8 @@ log = logger(agent.params)
 with summary_writer.as_default():
     # for summary purpose, we put all codes in this context
     with tf.contrib.summary.always_record_summaries():
-
+        policies, scores = list(), list()
+        _max, _min, _means = list(), list(), list()
         for i in itertools.count():
             state = env.reset()
             total_reward = 0
@@ -124,6 +133,25 @@ with summary_writer.as_default():
             # store the episode reward
             reward_buffer.append(total_reward)
             time_buffer.append(time.time() - start)
+            scores.append(total_reward)  # save the reward which has the same amount as `policies` buffer
+
+            weights_vec = flatten_weight(agent.actor.get_weights())
+            policies.append(weights_vec)
+
+            # === Train the GP Net ===
+            if len(policies) > batch_size:
+                history = gp_model.fit(np.array(policies), np.array(scores), batch_size=batch_size, epochs=num_epochs,
+                                       verbose=False)
+                sample_ = gp_model(weights_vec[np.newaxis, ...]).sample(
+                    num_sample).numpy()  # use the latest weights_vec to see the accuracy
+                print("Ep: {} | Return: {} | Mean Est Return: {:.2f} | Mean Loss: {:.3f}".format(
+                    i, total_reward, sample_.mean(), np.mean(history.history["loss"]))
+                )
+                tf.contrib.summary.scalar("Estimated Return", sample_.mean(), step=i)
+                _max.append(sample_.max())
+                _min.append(sample_.min())
+                _means.append(sample_.mean())
+
 
             if global_timestep.numpy() > agent.params.learning_start and i % agent.params.reward_buffer_ep == 0:
                 log.logging(global_timestep.numpy(), i, np.sum(time_buffer), reward_buffer, np.mean(loss), 0, [0])

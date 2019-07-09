@@ -6,6 +6,8 @@ import tensorflow_probability as tfp
 from matplotlib import pyplot as plt
 from tf_rl.common.utils import AnnealingSchedule, eager_setup
 from tf_rl.common.wrappers import DiscretisedEnv
+from utils.kernels import RBFKernelFn
+from utils.gp_models import create_model
 
 eager_setup()
 
@@ -59,48 +61,7 @@ if __name__ == '__main__':
     Alpha = AnnealingSchedule(start=1.0, end=0.01, decay_steps=decay_steps)
     agent = Q_Agent(env)
 
-
-    # gp_model = Model(num_inducing_points=40, kernel=RBFKernelFn)
-    # optimiser = tf.train.AdamOptimizer()
-    # # https://medium.com/tensorflow/regression-with-probabilistic-layers-in-tensorflow-probability-e46ff5d37baf
-    # loss_func = lambda y, rv_y: rv_y.variational_loss(y)  # temp loss func
-    #
-    #
-    # def update(model, x, y):
-    # 	""" Temp function to update the weights of GP net """
-    # 	with tf.GradientTape() as tape:
-    # 		pred = model(x)
-    # 		print(pred)
-    # 		loss = loss_func(y, pred)
-    # 	grads = tape.gradient(loss, model.trainable_weights)  # get gradients
-    # 	optimiser.apply_gradients(zip(grads, model.trainable_weights))  # apply gradients to the network
-    # 	return model, loss
-
-    def create_model():
-        dtype = np.float64
-        num_inducing_points = 40
-        loss = lambda y, rv_y: rv_y.variational_loss(y)
-
-        model = tf.keras.Sequential([
-            tf.keras.layers.InputLayer(input_shape=[144], dtype=dtype),
-            # tf.keras.layers.Dense(72, kernel_initializer='ones', use_bias=False),
-            tf.keras.layers.Dense(1, kernel_initializer='ones', use_bias=False),
-            tfp.layers.VariationalGaussianProcess(
-                num_inducing_points=num_inducing_points,
-                kernel_provider=RBFKernelFn(dtype=dtype),
-                event_shape=[1],
-                # inducing_index_points_initializer=tf.constant_initializer(
-                # 	np.linspace(*x_range, num=num_inducing_points,
-                # 				dtype=x.dtype)[..., np.newaxis]),
-                unconstrained_observation_noise_variance_initializer=(
-                    tf.constant_initializer(np.array(0.54).astype(dtype))),
-            ),
-        ])
-        model.compile(optimizer=tf.train.AdamOptimizer(learning_rate=0.01), loss=loss)
-        return model
-
-
-    gp_model = create_model()
+    gp_model = create_model(input_shape=144, kernel_fn=RBFKernelFn)
     batch_size = 50
     num_epochs = 100
     num_sample = 100  # number of sampling
