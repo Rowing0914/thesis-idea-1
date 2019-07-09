@@ -28,7 +28,9 @@ def load_dataset(n=150, n_tst=150):
 	x_tst = np.concatenate([x_tst, x_tst], axis=-1)
 	return y, x, x_tst
 
+
 y, x, x_tst = load_dataset()
+
 
 class RBFKernelFn(tf.keras.layers.Layer):
 	# https://medium.com/tensorflow/regression-with-probabilistic-layers-in-tensorflow-probability-e46ff5d37baf
@@ -58,6 +60,7 @@ class RBFKernelFn(tf.keras.layers.Layer):
 			length_scale=tf.nn.softplus(5. * self._length_scale)
 		)
 
+
 class Model(tf.keras.Model):
 	def __init__(self, num_inducing_points, kernel):
 		super(Model, self).__init__()
@@ -78,6 +81,7 @@ class Model(tf.keras.Model):
 		x = self.dense(inputs)
 		return self.gp(x)
 
+
 num_inducing_points = 40
 model = Model(num_inducing_points, kernel=RBFKernelFn)
 optimiser = tf.train.AdamOptimizer()
@@ -87,11 +91,8 @@ loss = lambda y, rv_y: rv_y.variational_loss(y)
 
 for i in range(150):
 	with tf.GradientTape() as tape:
-		pred = model(x[i][np.newaxis, ...])
-		print(pred)
 		pred = model(x)
-		print(pred)
-		loss_ = loss(y[i], pred)
+		loss_ = loss(y, pred)
 
 	# get gradients
 	grads = tape.gradient(loss_, model.trainable_weights)

@@ -19,13 +19,11 @@ def load_dataset(n=150, n_tst=150):
 		return 3 * (0.25 + g ** 2.)
 
 	x = (x_range[1] - x_range[0]) * np.random.rand(n) + x_range[0]
-	x = x[..., np.newaxis]
-	x = np.concatenate([x, x], axis=-1)
-	eps = np.random.randn(n, 2) * s(x)
+	eps = np.random.randn(n) * s(x)
 	y = (w0 * x * (1. + np.sin(x)) + b0) + eps
+	x = x[..., np.newaxis]
 	x_tst = np.linspace(*x_range, num=n_tst).astype(np.float32)
 	x_tst = x_tst[..., np.newaxis]
-	x_tst = np.concatenate([x_tst, x_tst], axis=-1)
 	return y, x, x_tst
 
 
@@ -60,15 +58,17 @@ class RBFKernelFn(tf.keras.layers.Layer):
 			length_scale=tf.nn.softplus(5. * self._length_scale)
 		)
 
+
 # Do inference.
 batch_size = 32
+
 
 def create_model():
 	num_inducing_points = 40
 	loss = lambda y, rv_y: rv_y.variational_loss(y)
 
 	model = tf.keras.Sequential([
-		tf.keras.layers.InputLayer(input_shape=[2], dtype=x.dtype),
+		tf.keras.layers.InputLayer(input_shape=[1], dtype=x.dtype),
 		tf.keras.layers.Dense(1, kernel_initializer='ones', use_bias=False),
 		tfp.layers.VariationalGaussianProcess(
 			num_inducing_points=num_inducing_points,
@@ -84,11 +84,9 @@ def create_model():
 	model.compile(optimizer=tf.train.AdamOptimizer(learning_rate=0.01), loss=loss)
 	return model
 
-model = create_model()
-# model.fit(x, y, batch_size=batch_size, epochs=100, verbose=False)
 
-for i in range(100):
-	model.fit(x[i][np.newaxis, ...], y[i,0][np.newaxis, ...])
+model = create_model()
+model.fit(x, y, batch_size=batch_size, epochs=1000, verbose=False)
 
 # Profit.
 yhat = model(x_tst)
@@ -96,29 +94,23 @@ assert isinstance(yhat, tfd.Distribution)
 
 y, x, _ = load_dataset()
 
-
-from pprint import pprint
 import matplotlib.pyplot as plt
-import numpy as np
-import seaborn as sns
 
 plt.figure(figsize=[6, 1.5])  # inches
-plt.plot(x, y, 'b.', label='observed');
+plt.plot(x, y, 'b.', label='observed')
 
-num_samples = 7
-for i in range(num_samples):
-	sample_ = yhat.sample().numpy()
-	plt.plot(x_tst,
-			 sample_[..., 0].T,
-			 'r',
-			 linewidth=0.9,
-			 label='ensemble means' if i == 0 else None);
+sample_ = yhat.sample(100).numpy()[..., 0]
+std_ = np.std(sample_, axis=0)
+mean_ = np.mean(sample_, axis=0)
 
-plt.ylim(-0., 17);
-plt.yticks(np.linspace(0, 15, 4)[1:]);
-plt.xticks(np.linspace(*x_range, num=9));
+plt.plot(x_tst.flatten(), mean_, label="Prediction")
+plt.fill_between(x_tst.flatten(), mean_ - 2 * std_, mean_ + 2 * std_, label="2STD", facecolor='blue', alpha=0.3)
 
-ax = plt.gca();
+plt.ylim(-0., 17)
+plt.yticks(np.linspace(0, 15, 4)[1:])
+plt.xticks(np.linspace(*x_range, num=9))
+
+ax = plt.gca()
 ax.xaxis.set_ticks_position('bottom')
 ax.yaxis.set_ticks_position('left')
 ax.spines['left'].set_position(('data', 0))

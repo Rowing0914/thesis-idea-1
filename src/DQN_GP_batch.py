@@ -8,6 +8,8 @@ from tf_rl.common.utils import *
 from tf_rl.common.policy import EpsilonGreedyPolicy_eager
 from tf_rl.common.networks import CartPole as Model
 from tf_rl.agents.DQN import DQN_cartpole
+from utils.kernels import RBFKernelFn
+from utils.gp_models import create_model
 
 tfd = tfp.distributions
 
@@ -70,62 +72,7 @@ agent = DQN_cartpole(Model, optimizer, loss_fn, grad_clip_fn, env.action_space.n
 env.seed(params.seed)
 tf.random.set_random_seed(params.seed)
 
-
-
-class RBFKernelFn(tf.keras.layers.Layer):
-	# https://medium.com/tensorflow/regression-with-probabilistic-layers-in-tensorflow-probability-e46ff5d37baf
-	def __init__(self, **kwargs):
-		super(RBFKernelFn, self).__init__(**kwargs)
-		dtype = kwargs.get('dtype', None)
-
-		self._amplitude = self.add_variable(
-			initializer=tf.constant_initializer(0),
-			dtype=dtype,
-			name='amplitude')
-
-		self._length_scale = self.add_variable(
-			initializer=tf.constant_initializer(0),
-			dtype=dtype,
-			name='length_scale')
-
-	def call(self, x):
-		# Never called -- this is just a layer so it can hold variables
-		# in a way Keras understands.
-		return x
-
-	@property
-	def kernel(self):
-		return tfp.positive_semidefinite_kernels.ExponentiatedQuadratic(
-			amplitude=tf.nn.softplus(0.1 * self._amplitude),
-			length_scale=tf.nn.softplus(5. * self._length_scale)
-		)
-
-def create_model():
-	dtype = np.float64
-	num_inducing_points = 40
-	loss = lambda y, rv_y: rv_y.variational_loss(y)
-
-	model = tf.keras.Sequential([
-		tf.keras.layers.InputLayer(input_shape=[658], dtype=dtype),
-		tf.keras.layers.Dense(379, kernel_initializer='ones', use_bias=False),
-		tf.keras.layers.Dense(169, kernel_initializer='ones', use_bias=False),
-		tf.keras.layers.Dense(1, kernel_initializer='ones', use_bias=False),
-		tfp.layers.VariationalGaussianProcess(
-			num_inducing_points=num_inducing_points,
-			kernel_provider=RBFKernelFn(dtype=dtype),
-			event_shape=[1],
-			# inducing_index_points_initializer=tf.constant_initializer(
-			# 	np.linspace(*x_range, num=num_inducing_points,
-			# 				dtype=x.dtype)[..., np.newaxis]),
-			unconstrained_observation_noise_variance_initializer=(
-				tf.constant_initializer(np.array(0.54).astype(dtype))),
-		),
-	])
-	model.compile(optimizer=tf.train.AdamOptimizer(learning_rate=0.01), loss=loss)
-	return model
-
-
-gp_model = create_model()
+gp_model = create_model(kernel_fn=RBFKernelFn)
 batch_size = 32
 num_epochs = 200
 num_sample = 100  # number of sampling
