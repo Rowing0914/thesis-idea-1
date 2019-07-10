@@ -2,20 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4ac71611-3c61-4e89-8bb8-a0d1d3f1d9a4" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/dictionaries/noio0925.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/utils/common.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/utils/gp_models_test.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/utils/gp_test/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/DDPG_vanilla_GPR.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DDPG_GP.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/DDPG_GP.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DQN_GP_batch.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/DQN_GP_batch_cartpole.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Qlearn_GP_batch.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/Qlearn_GP_batch.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gaussian_process.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/gp_test/gaussian_process_test.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gp_eager_way.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/gp_test/gp_eager_way_test.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gp_tf_keras_seq_way.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/gp_test/gp_tf_keras_seq_way_test.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/gp_models.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/gp_models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/kernels.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/kernels.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -23,75 +12,18 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="DockManager">
-    <window id="1">
-      <content type="file-editors">
-        <state>
-          <leaf>
-            <file pinned="false" current-in-tab="true">
-              <entry file="file://$PROJECT_DIR$/src/DDPG_GP.py">
-                <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="526">
-                    <caret line="150" column="42" lean-forward="true" selection-start-line="150" selection-start-column="42" selection-end-line="150" selection-end-column="42" />
-                    <folding>
-                      <element signature="e#0#11#0" expanded="true" />
-                    </folding>
-                  </state>
-                </provider>
-              </entry>
-            </file>
-          </leaf>
-        </state>
-      </content>
-    </window>
-  </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/DQN_GP_batch_cartpole.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2601">
-              <caret line="153" column="45" lean-forward="true" selection-start-line="141" selection-start-column="12" selection-end-line="153" selection-end-column="45" />
-              <folding>
-                <element signature="e#0#21#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/utils/gp_models.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="51">
-              <caret line="3" column="39" selection-start-line="3" selection-start-column="39" selection-end-line="3" selection-end-column="39" />
-              <folding>
-                <element signature="e#0#23#0" expanded="true" />
-                <marker date="1562691058948" expanded="true" signature="1790:2710" ph="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/utils/common.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/README.md">
-          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-            <state split_layout="SPLIT">
-              <first_editor relative-caret-position="136">
-                <caret line="8" column="61" selection-start-line="8" selection-start-column="61" selection-end-line="8" selection-end-column="61" />
-              </first_editor>
-              <second_editor />
+        <entry file="file://$PROJECT_DIR$/src/DDPG_vanilla_GPR.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="506">
+              <caret line="169" column="110" selection-start-line="169" selection-start-column="110" selection-end-line="169" selection-end-column="110" />
+              <folding>
+                <element signature="e#0#11#0" expanded="true" />
+              </folding>
             </state>
           </provider>
-          <provider editor-type-id="Gfm" />
         </entry>
       </file>
     </leaf>
@@ -102,6 +34,11 @@
         <option value="Python Script" />
       </list>
     </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>num_epochs</find>
+    </findStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -125,14 +62,15 @@
         <option value="$PROJECT_DIR$/utils/common.py" />
         <option value="$PROJECT_DIR$/src/DDPG_GP.py" />
         <option value="$PROJECT_DIR$/README.md" />
+        <option value="$PROJECT_DIR$/src/DDPG_vanilla_GPR.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="3840" />
-    <option name="y" value="-4" />
-    <option name="width" value="1920" />
-    <option name="height" value="1084" />
+    <option name="x" value="1442" />
+    <option name="y" value="-1" />
+    <option name="width" value="1918" />
+    <option name="height" value="1083" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -160,7 +98,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../atari-reset" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../PyDeepGP" />
     <property name="settings.editor.selected.configurable" value="preferences.sourceCode.Python" />
   </component>
   <component name="RecentsManager">
@@ -181,7 +119,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.DDPG_GP">
+  <component name="RunManager" selected="Python.DDPG_vanilla_GPR">
     <configuration name="DDPG_GP" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="Research_RL" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -205,6 +143,29 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="DDPG_vanilla_GPR" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="Research_RL" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+        <env name="LD_LIBRARY_PATH" value="$LD_LIBRARY_PATH:$USER_HOME$/.mujoco/mujoco200/bin:/usr/lib/nvidia-410" />
+        <env name="LD_PRELOAD" value="/usr/lib/x86_64-linux-gnu/libGLEW.so" />
+      </envs>
+      <option name="SDK_HOME" value="/usr/local/bin/python3.6" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/DDPG_vanilla_GPR.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="DQN_GP_batch" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="Research_RL" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -218,27 +179,6 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/DQN_GP_batch_cartpole.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="Qlearn_GP_batch" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="Research_RL" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/Qlearn_GP_batch.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -311,17 +251,17 @@
     <list>
       <item itemvalue="Python.DDPG_GP" />
       <item itemvalue="Python.DQN_GP_batch" />
-      <item itemvalue="Python.Qlearn_GP_batch" />
-      <item itemvalue="Python tests.pytest in gp_models_test.py" />
       <item itemvalue="Python.gp_models_test" />
+      <item itemvalue="Python tests.pytest in gp_models_test.py" />
+      <item itemvalue="Python.DDPG_vanilla_GPR" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.DDPG_vanilla_GPR" />
         <item itemvalue="Python.DDPG_GP" />
         <item itemvalue="Python.gp_models_test" />
         <item itemvalue="Python.DQN_GP_batch" />
         <item itemvalue="Python tests.pytest in gp_models_test.py" />
-        <item itemvalue="Python.Qlearn_GP_batch" />
       </list>
     </recent_temporary>
   </component>
@@ -353,16 +293,16 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="3840" y="-4" width="1920" height="1084" extended-state="6" />
+    <frame x="1920" y="-4" width="1920" height="1084" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49896693" visible="true" weight="0.19358289" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49896693" visible="true" weight="0.2" />
       <window_info id="Favorites" order="1" side_tool="true" />
       <window_info id="Structure" order="2" sideWeight="0.50103307" side_tool="true" weight="0.19358289" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Terminal" order="2" visible="true" weight="0.30165288" />
-      <window_info anchor="bottom" id="Run" order="3" weight="0.32954547" />
+      <window_info anchor="bottom" id="Terminal" order="2" weight="0.2768595" />
+      <window_info active="true" anchor="bottom" id="Run" order="3" visible="true" weight="0.32954547" />
       <window_info anchor="bottom" id="Debug" order="4" weight="0.3997934" />
       <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="6" weight="0.4" />
@@ -488,34 +428,29 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/utils/DDPG.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="44" selection-start-line="9" selection-start-column="44" selection-end-line="9" selection-end-column="44" />
+    <entry file="file://$PROJECT_DIR$/utils/DDPG.py" />
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="187">
+            <caret line="11" column="5" selection-start-line="11" selection-start-column="5" selection-end-line="11" selection-end-column="5" />
+          </first_editor>
+          <second_editor />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/DDPG_GP.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="526">
-          <caret line="150" column="42" lean-forward="true" selection-start-line="150" selection-start-column="42" selection-end-line="150" selection-end-column="42" />
-          <folding>
-            <element signature="e#0#11#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
+      <provider editor-type-id="Gfm" />
     </entry>
     <entry file="file://$PROJECT_DIR$/utils/common.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
-          <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
+          <caret line="8" selection-start-line="8" selection-end-line="8" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/utils/gp_models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="39" selection-start-line="3" selection-start-column="39" selection-end-line="3" selection-end-column="39" />
+        <state relative-caret-position="595">
+          <caret line="38" column="10" selection-start-line="38" selection-start-column="10" selection-end-line="38" selection-end-column="10" />
           <folding>
             <element signature="e#0#23#0" expanded="true" />
             <marker date="1562691058948" expanded="true" signature="1790:2710" ph="..." />
@@ -525,24 +460,33 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/DQN_GP_batch_cartpole.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2601">
-          <caret line="153" column="45" lean-forward="true" selection-start-line="141" selection-start-column="12" selection-end-line="153" selection-end-column="45" />
+        <state relative-caret-position="136">
+          <caret line="110" selection-start-line="110" selection-end-line="110" />
           <folding>
             <element signature="e#0#21#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="136">
-            <caret line="8" column="61" selection-start-line="8" selection-start-column="61" selection-end-line="8" selection-end-column="61" />
-          </first_editor>
-          <second_editor />
+    <entry file="file://$PROJECT_DIR$/src/DDPG_GP.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="39" lean-forward="true" selection-start-line="11" selection-end-line="11" selection-end-column="39" />
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
+          </folding>
         </state>
       </provider>
-      <provider editor-type-id="Gfm" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/DDPG_vanilla_GPR.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="506">
+          <caret line="169" column="110" selection-start-line="169" selection-start-column="110" selection-end-line="169" selection-end-column="110" />
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
     </entry>
   </component>
 </project>

@@ -9,7 +9,7 @@ so, please check that as well.
 # Q-learning with GP Performance Prediction model on cartpole
 $ python3.6 src.Qlearn_GP_batch.py
 
-# DDPG with GP Performance Prediction model on cartpole
+# DQN with GP Performance Prediction model on cartpole
 $ python3.6 src.DQN_GP_batch_cartpole.py
 
 # DDPG with GP Performance Prediction model on MuJoCo
