@@ -2,9 +2,23 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4ac71611-3c61-4e89-8bb8-a0d1d3f1d9a4" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/DDPG_vanilla_GPR.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/DDPG_Bayesnet.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils/tests/gp_test/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils/tests/gp_test/gp_eager_test.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils/tests/logistic_regression_test.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils/tests/model_test.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils/tests/plot_test.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DDPG_GP.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/DDPG_GP.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DDPG_vanilla_GPR.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/DDPG_vanilla_GPR.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DQN_GP_batch_cartpole.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/DQN_GP_batch_cartpole.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/common.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/common.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/gp_models.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/gp_models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/gp_models_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/tests/gp_models_test.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/gp_test/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/tests/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/gp_test/gaussian_process_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/tests/gp_test/gaussian_process_test.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/gp_test/gp_eager_way_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/tests/gp_test/variational_gp_eager_way_test.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/gp_test/gp_tf_keras_seq_way_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/tests/gp_test/gp_tf_keras_seq_way_test.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -14,13 +28,49 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/DDPG_vanilla_GPR.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="506">
-              <caret line="169" column="110" selection-start-line="169" selection-start-column="110" selection-end-line="169" selection-end-column="110" />
+            <state relative-caret-position="2295">
+              <caret line="145" column="71" selection-start-line="145" selection-start-column="71" selection-end-line="145" selection-end-column="71" />
               <folding>
                 <element signature="e#0#11#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/utils/tests/model_test.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="340">
+              <caret line="22" column="69" selection-start-line="22" selection-start-column="8" selection-end-line="22" selection-end-column="69" />
+              <folding>
+                <element signature="e#0#42#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/DDPG_Bayesnet.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1088">
+              <caret line="74" column="27" selection-start-line="74" selection-start-column="27" selection-end-line="74" selection-end-column="27" />
+              <folding>
+                <element signature="e#0#11#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/utils/gp_models.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="332">
+              <caret line="106" lean-forward="true" selection-start-line="106" selection-end-line="106" />
+              <folding>
+                <element signature="e#0#23#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -57,20 +107,28 @@
         <option value="$PROJECT_DIR$/utils/test_gp_models.py" />
         <option value="$PROJECT_DIR$/utils/gp_models_test.py" />
         <option value="$PROJECT_DIR$/utils/DDPG.py" />
-        <option value="$PROJECT_DIR$/src/DQN_GP_batch_cartpole.py" />
-        <option value="$PROJECT_DIR$/utils/gp_models.py" />
-        <option value="$PROJECT_DIR$/utils/common.py" />
-        <option value="$PROJECT_DIR$/src/DDPG_GP.py" />
         <option value="$PROJECT_DIR$/README.md" />
+        <option value="$PROJECT_DIR$/utils/tests/plot_test.py" />
+        <option value="$PROJECT_DIR$/utils/common.py" />
+        <option value="$PROJECT_DIR$/utils/tests/logistic_regression_test.py" />
+        <option value="$PROJECT_DIR$/utils/gp_test/gp_eager_test.py" />
+        <option value="$PROJECT_DIR$/utils/tests/gp_test/gp_eager_test.py" />
+        <option value="$PROJECT_DIR$/src/DQN_GP_batch_cartpole.py" />
+        <option value="$PROJECT_DIR$/utils/tests/gp_test/gaussian_process_test.py" />
+        <option value="$PROJECT_DIR$/src/DDPG_GP.py" />
+        <option value="$PROJECT_DIR$/utils/tests/gp_test/variational_gp_eager_way_test.py" />
+        <option value="$PROJECT_DIR$/utils/tests/model_test.py" />
         <option value="$PROJECT_DIR$/src/DDPG_vanilla_GPR.py" />
+        <option value="$PROJECT_DIR$/src/DDPG_Baeysnet.py" />
+        <option value="$PROJECT_DIR$/utils/gp_models.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="1442" />
-    <option name="y" value="-1" />
-    <option name="width" value="1918" />
-    <option name="height" value="1083" />
+    <option name="x" value="1919" />
+    <option name="y" value="-4" />
+    <option name="width" value="1922" />
+    <option name="height" value="1085" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -89,6 +147,17 @@
               <item name="Research_RL" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="Research_RL" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Research_RL" type="462c0819:PsiDirectoryNode" />
+              <item name="utils" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Research_RL" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Research_RL" type="462c0819:PsiDirectoryNode" />
+              <item name="utils" type="462c0819:PsiDirectoryNode" />
+              <item name="tests" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -103,6 +172,7 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/utils/tests" />
       <recent name="$PROJECT_DIR$/utils/gp_test" />
       <recent name="$PROJECT_DIR$" />
     </key>
@@ -119,31 +189,8 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.DDPG_vanilla_GPR">
-    <configuration name="DDPG_GP" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="Research_RL" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-        <env name="LD_LIBRARY_PATH" value="$LD_LIBRARY_PATH:$USER_HOME$/.mujoco/mujoco200/bin:/usr/lib/nvidia-410" />
-        <env name="LD_PRELOAD" value="/usr/lib/x86_64-linux-gnu/libGLEW.so" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/DDPG_GP.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="DDPG_vanilla_GPR" type="PythonConfigurationType" factoryName="Python" temporary="true">
+  <component name="RunManager" selected="Python.DDPG_Baeysnet">
+    <configuration name="DDPG_Baeysnet" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="Research_RL" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -157,7 +204,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/DDPG_vanilla_GPR.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/DDPG_Bayesnet.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -166,14 +213,16 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="DQN_GP_batch" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="DQN_GP_batch_cartpole" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="Research_RL" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
+        <env name="LD_LIBRARY_PATH" value="$LD_LIBRARY_PATH:$USER_HOME$/.mujoco/mujoco200/bin:/usr/lib/nvidia-410" />
+        <env name="LD_PRELOAD" value="/usr/lib/x86_64-linux-gnu/libGLEW.so" />
       </envs>
-      <option name="SDK_HOME" value="" />
+      <option name="SDK_HOME" value="/usr/local/bin/python3.6" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
@@ -210,7 +259,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="gp_models_test" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="gaussian_process_test" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="Research_RL" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -220,11 +269,11 @@
         <env name="LD_PRELOAD" value="/usr/lib/x86_64-linux-gnu/libGLEW.so" />
       </envs>
       <option name="SDK_HOME" value="/usr/local/bin/python3.6" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/utils" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/utils/tests/gp_test" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/utils/gp_models_test.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/utils/tests/gp_test/gaussian_process_test.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -233,35 +282,66 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="pytest in gp_models_test.py" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+    <configuration name="model_test" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="Research_RL" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/utils" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+        <env name="LD_LIBRARY_PATH" value="$LD_LIBRARY_PATH:$USER_HOME$/.mujoco/mujoco200/bin:/usr/lib/nvidia-410" />
+        <env name="LD_PRELOAD" value="/usr/lib/x86_64-linux-gnu/libGLEW.so" />
+      </envs>
+      <option name="SDK_HOME" value="/usr/local/bin/python3.6" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/utils/tests" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="_new_keywords" value="&quot;&quot;" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;$PROJECT_DIR$/utils/gp_models_test.py&quot;" />
-      <option name="_new_targetType" value="&quot;PATH&quot;" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/utils/tests/model_test.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="variational_gp_eager_way_test (1)" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="Research_RL" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+        <env name="LD_LIBRARY_PATH" value="$LD_LIBRARY_PATH:$USER_HOME$/.mujoco/mujoco200/bin:/usr/lib/nvidia-410" />
+        <env name="LD_PRELOAD" value="/usr/lib/x86_64-linux-gnu/libGLEW.so" />
+      </envs>
+      <option name="SDK_HOME" value="/usr/local/bin/python3.6" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/utils/tests/gp_test" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/utils/tests/gp_test/variational_gp_eager_way_test.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Python.DDPG_GP" />
-      <item itemvalue="Python.DQN_GP_batch" />
-      <item itemvalue="Python.gp_models_test" />
-      <item itemvalue="Python tests.pytest in gp_models_test.py" />
-      <item itemvalue="Python.DDPG_vanilla_GPR" />
+      <item itemvalue="Python.DDPG_Baeysnet" />
+      <item itemvalue="Python.DQN_GP_batch_cartpole" />
+      <item itemvalue="Python.gaussian_process_test" />
+      <item itemvalue="Python.model_test" />
+      <item itemvalue="Python.variational_gp_eager_way_test (1)" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.DDPG_vanilla_GPR" />
-        <item itemvalue="Python.DDPG_GP" />
-        <item itemvalue="Python.gp_models_test" />
-        <item itemvalue="Python.DQN_GP_batch" />
-        <item itemvalue="Python tests.pytest in gp_models_test.py" />
+        <item itemvalue="Python.DDPG_Baeysnet" />
+        <item itemvalue="Python.model_test" />
+        <item itemvalue="Python.variational_gp_eager_way_test (1)" />
+        <item itemvalue="Python.gaussian_process_test" />
+        <item itemvalue="Python.DQN_GP_batch_cartpole" />
       </list>
     </recent_temporary>
   </component>
@@ -293,15 +373,15 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="1920" y="-4" width="1920" height="1084" extended-state="6" />
+    <frame x="1919" y="-4" width="1922" height="1085" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49896693" visible="true" weight="0.2" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49896693" visible="true" weight="0.2053476" />
       <window_info id="Favorites" order="1" side_tool="true" />
       <window_info id="Structure" order="2" sideWeight="0.50103307" side_tool="true" weight="0.19358289" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Terminal" order="2" weight="0.2768595" />
+      <window_info anchor="bottom" id="Terminal" order="2" weight="0.26859504" />
       <window_info active="true" anchor="bottom" id="Run" order="3" visible="true" weight="0.32954547" />
       <window_info anchor="bottom" id="Debug" order="4" weight="0.3997934" />
       <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
@@ -320,7 +400,7 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/utils/gp_test/gp_tf_keras_seq_way_test.py</url>
+          <url>file://$PROJECT_DIR$/utils/tests/gp_test/gp_tf_keras_seq_way_test.py</url>
           <line>29</line>
           <option name="timeStamp" value="2" />
         </line-breakpoint>
@@ -335,57 +415,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/utils/gp_test/gp_eager_way_test.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="380">
-          <caret line="93" column="20" selection-start-line="93" selection-start-column="15" selection-end-line="93" selection-end-column="20" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/utils/gp_test/gp_tf_keras_seq_way_test.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="455">
-          <caret line="117" column="20" lean-forward="true" selection-start-line="117" selection-start-column="20" selection-end-line="117" selection-end-column="20" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///usr/local/lib/python3.6/site-packages/tf_rl/common/utils.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="77" column="19" selection-start-line="77" selection-start-column="10" selection-end-line="77" selection-end-column="19" />
-          <folding>
-            <element signature="e#0#23#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/utils/__init__.py">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Qlearn_GP_batch.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="510">
-          <caret line="72" column="34" lean-forward="true" selection-start-line="72" selection-start-column="34" selection-end-line="72" selection-end-column="34" />
-          <folding>
-            <element signature="e#0#10#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/utils/gp_test/gaussian_process_test.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-408">
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/utils/kernels.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -401,16 +432,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="234">
           <caret line="152" selection-start-line="152" selection-end-line="152" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/utils/gp_models_test.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="455">
-          <caret line="65" selection-start-line="65" selection-end-line="67" selection-end-column="86" />
-          <folding>
-            <element signature="e#0#15#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -430,6 +451,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/utils/DDPG.py" />
     <entry file="file://$PROJECT_DIR$/README.md">
+      <provider editor-type-id="Gfm" />
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
           <first_editor relative-caret-position="187">
@@ -438,52 +460,180 @@
           <second_editor />
         </state>
       </provider>
-      <provider editor-type-id="Gfm" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/utils/common.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" selection-start-line="8" selection-end-line="8" />
-        </state>
-      </provider>
+    <entry file="file://$PROJECT_DIR$/utils/tests/test.png">
+      <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/utils/gp_models.py">
+    <entry file="file://$PROJECT_DIR$/utils/tests/gp_models_test.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="595">
-          <caret line="38" column="10" selection-start-line="38" selection-start-column="10" selection-end-line="38" selection-end-column="10" />
+        <state relative-caret-position="455">
+          <caret line="65" selection-start-line="65" selection-end-line="67" selection-end-column="86" />
           <folding>
-            <element signature="e#0#23#0" expanded="true" />
-            <marker date="1562691058948" expanded="true" signature="1790:2710" ph="..." />
+            <element signature="e#159#174#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/DQN_GP_batch_cartpole.py">
+    <entry file="file://$PROJECT_DIR$/utils/common.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="110" selection-start-line="110" selection-end-line="110" />
+        <state relative-caret-position="527">
+          <caret line="49" selection-start-line="49" selection-end-line="49" />
           <folding>
-            <element signature="e#0#21#0" expanded="true" />
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/local/lib/python3.6/site-packages/tf_rl/common/utils.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-152">
+          <caret line="65" column="4" selection-start-line="65" selection-start-column="4" selection-end-line="65" selection-end-column="4" />
+          <folding>
+            <element signature="e#0#23#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/utils/tests/gp_test/gp_tf_keras_seq_way_test.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="557">
+          <caret line="96" column="31" selection-end-line="122" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/utils/tests/gp_test/gaussian_process_test.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="319">
+          <caret line="45" selection-start-line="45" selection-end-line="45" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/utils/tests/logistic_regression_test.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="387">
+          <caret line="166" column="31" selection-start-line="166" selection-start-column="23" selection-end-line="166" selection-end-column="31" />
+          <folding>
+            <element signature="e#748#786#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Qlearn_GP_batch.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="54" column="21" lean-forward="true" selection-end-line="119" />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/local/lib/python3.6/site-packages/tensorflow_probability/python/internal/dtype_util.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="205">
+          <caret line="75" selection-start-line="75" selection-end-line="75" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/utils/tests/plot_test.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="19" selection-start-line="6" selection-start-column="19" selection-end-line="6" selection-end-column="19" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/DDPG_GP.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="39" lean-forward="true" selection-start-line="11" selection-end-line="11" selection-end-column="39" />
+        <state relative-caret-position="-1037">
+          <caret line="74" column="38" selection-start-line="74" selection-start-column="38" selection-end-line="74" selection-end-column="38" />
           <folding>
             <element signature="e#0#11#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/utils/tests/gp_test/gp_eager_test.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="58" column="9" lean-forward="true" selection-start-line="31" selection-end-line="58" selection-end-column="9" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/local/lib/python3.6/site-packages/tensorflow/python/ops/gen_math_ops.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="205">
+          <caret line="7580" selection-start-line="7580" selection-end-line="7580" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/DQN_GP_batch_cartpole.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1343">
+          <caret line="79" column="38" lean-forward="true" selection-start-line="79" selection-start-column="38" selection-end-line="79" selection-end-column="38" />
+          <folding>
+            <element signature="e#0#21#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/utils/tests/gp_test/variational_gp_eager_way_test.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="523">
+          <caret line="32" selection-start-line="32" selection-end-line="32" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/DDPG_vanilla_GPR.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="506">
-          <caret line="169" column="110" selection-start-line="169" selection-start-column="110" selection-end-line="169" selection-end-column="110" />
+        <state relative-caret-position="2295">
+          <caret line="145" column="71" selection-start-line="145" selection-start-column="71" selection-end-line="145" selection-end-column="71" />
           <folding>
             <element signature="e#0#11#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/utils/tests/model_test.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="22" column="69" selection-start-line="22" selection-start-column="8" selection-end-line="22" selection-end-column="69" />
+          <folding>
+            <element signature="e#0#42#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/DDPG_Bayesnet.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1088">
+          <caret line="74" column="27" selection-start-line="74" selection-start-column="27" selection-end-line="74" selection-end-column="27" />
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/utils/gp_models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="332">
+          <caret line="106" lean-forward="true" selection-start-line="106" selection-end-line="106" />
+          <folding>
+            <element signature="e#0#23#0" expanded="true" />
           </folding>
         </state>
       </provider>

@@ -9,7 +9,7 @@ from tf_rl.common.policy import EpsilonGreedyPolicy_eager
 from tf_rl.common.networks import CartPole as Model
 from tf_rl.agents.DQN import DQN_cartpole
 from utils.kernels import RBFKernelFn
-from utils.gp_models import create_model
+from utils.gp_models import create_model, create_TF_GP
 from utils.common import flatten_weight
 
 tfd = tfp.distributions
@@ -58,7 +58,6 @@ loss_fn = create_loss_func(params.loss_fn)
 grad_clip_fn = gradient_clip_fn(flag=params.grad_clip_flg)
 
 # create a directory for log/model
-params = create_log_model_directory(params, get_alg_name())
 now = datetime.datetime.now()
 params.log_dir = "../logs/logs/" + now.strftime("%Y%m%d-%H%M%S") + "-DQN_GP/"
 params.model_dir = "../logs/models/" + now.strftime("%Y%m%d-%H%M%S") + "-DQN_GP/"
@@ -176,4 +175,6 @@ with summary_writer.as_default():
         plt.plot(_means, label="Est Return")
         plt.fill_between(np.arange(len(_min)), _min, _max, facecolor='blue', alpha=0.5)
         plt.legend()
+        plt.xlabel("Number of Evaluation")
+        plt.ylabel("Return")
         plt.show()

@@ -7,9 +7,8 @@ from tf_rl.common.utils import *
 from tf_rl.agents.DDPG import DDPG
 from tf_rl.common.params import DDPG_ENV_LIST
 from tf_rl.common.networks import DDPG_Actor as Actor, DDPG_Critic as Critic
-from utils.kernels import RBFKernelFn
-from utils.gp_models import create_variational_GP_model
-from utils.common import flatten_weight
+from utils.common import flatten_weight, test_Agent_DDPG, plotting_fn
+from utils.gp_models import create_bayes_net
 
 eager_setup()
 
@@ -32,7 +31,8 @@ DDPG_ENV_LIST = {
 parser = argparse.ArgumentParser()
 parser.add_argument("--env_name", default="Ant-v2", help="Env title")
 parser.add_argument("--seed", default=123, type=int, help="seed for randomness")
-parser.add_argument("--num_frames", default=1_000_000, type=int, help="total frame in a training")
+# parser.add_argument("--num_frames", default=1_000_000, type=int, help="total frame in a training")
+parser.add_argument("--num_frames", default=500_000, type=int, help="total frame in a training")
 parser.add_argument("--train_interval", default=100, type=int, help="a frequency of training in training phase")
 parser.add_argument("--nb_train_steps", default=50, type=int, help="a number of training after one episode")
 parser.add_argument("--eval_interval", default=10_000, type=int, help="a frequency of evaluation in training phase")
@@ -70,11 +70,10 @@ replay_buffer = ReplayBuffer(params.memory_size)
 reward_buffer = deque(maxlen=params.reward_buffer_ep)
 summary_writer = tf.contrib.summary.create_file_writer(params.log_dir)
 
-init_state = env.reset() # reset
-agent.predict(init_state) # burn the format of the input matrix to get the weight matrices!!
-gp_model = create_variational_GP_model(weights=agent.actor.get_weights(), kernel_fn=RBFKernelFn)
-batch_size = 32
-num_epochs = 10 # number of training of GP
+init_state = env.reset()  # reset
+agent.predict(init_state)  # burn the format of the input matrix to get the weight matrices!!
+gp_model, update = create_bayes_net()
+optimiser = tf.compat.v1.train.AdamOptimizer()
 num_sample = 100  # number of sampling
 
 get_ready(agent.params)
@@ -87,7 +86,7 @@ with summary_writer.as_default():
     # for summary purpose, we put all codes in this context
     with tf.contrib.summary.always_record_summaries():
         policies, scores = list(), list()
-        _max, _min, _means = list(), list(), list()
+        preds, evals = list(), list()
         for i in itertools.count():
             state = env.reset()
             total_reward = 0
@@ -133,36 +132,40 @@ with summary_writer.as_default():
             # store the episode reward
             reward_buffer.append(total_reward)
             time_buffer.append(time.time() - start)
-            scores.append(total_reward)  # save the reward which has the same amount as `policies` buffer
-
-            weights_vec = flatten_weight(agent.actor.get_weights())
-            policies.append(weights_vec)
-
-            # === Train the GP Net ===
-            if len(policies) > batch_size:
-                history = gp_model.fit(np.array(policies), np.array(scores), batch_size=batch_size, epochs=num_epochs,
-                                       verbose=False)
-                sample_ = gp_model(weights_vec[np.newaxis, ...]).sample(
-                    num_sample).numpy()  # use the latest weights_vec to see the accuracy
-                print("Ep: {} | Return: {} | Mean Est Return: {:.2f} | Mean Loss: {:.3f}".format(
-                    i, total_reward, sample_.mean(), np.mean(history.history["loss"]))
-                )
-                tf.contrib.summary.scalar("Estimated Return", sample_.mean(), step=i)
-                _max.append(sample_.max())
-                _min.append(sample_.min())
-                _means.append(sample_.mean())
-
 
             if global_timestep.numpy() > agent.params.learning_start and i % agent.params.reward_buffer_ep == 0:
                 log.logging(global_timestep.numpy(), i, np.sum(time_buffer), reward_buffer, np.mean(loss), 0, [0])
 
+            # === Store the trained policy and Scores ===
+            if not agent.eval_flg:
+                scores.append(total_reward)  # save the reward which has the same amount as `policies` buffer
+                weights_vec = flatten_weight(agent.actor.get_weights())
+                policies.append(weights_vec)
+
+            # === Train the GP Net ===
             if agent.eval_flg:
-                test_Agent_DDPG(agent, env)
+                weights_vec = flatten_weight(agent.actor.get_weights())
+                update(gp_model, optimiser, np.array(policies), np.array(scores))
+                sample_ = gp_model(weights_vec[np.newaxis, ...]).sample(num_sample).numpy()
+                eval_scores = test_Agent_DDPG(agent, env, n_trial=10)
+                print("Evaluation Mode => Mean Return: {:.2f} | STD Return: {:.2f} | Mean Est Return: {:.2f} | STD Est Return: {:.2f}"
+                      .format(i, eval_scores.mean(), eval_scores.std(), sample_.mean(), sample_.std()))
+
+                # visualisation purpose
+                preds.append(sample_)
+                evals.append(eval_scores)
+
+                # After training processes
+                scores.append(total_reward)
+                policies.append(weights_vec)
                 agent.eval_flg = False
 
             # check the stopping condition
             if global_timestep.numpy() > agent.params.num_frames:
                 print("=== Training is Done ===")
-                test_Agent_DDPG(agent, env, n_trial=agent.params.test_episodes)
                 env.close()
                 break
+
+        preds, evals = np.array(preds)[:, 0, :], np.array(evals)[:, 0, :]
+        print(preds.shape, evals.shape)
+        plotting_fn(preds, evals)

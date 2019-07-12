@@ -43,7 +43,6 @@ with tf.Session() as sess:
     sess.run(tf.global_variables_initializer())
     for i in range(1000):
         _, neg_log_likelihood_ = sess.run([optimise, neg_log_likelihood])
-        print(sess.run([amplitude, length_scale, observation_noise_variance]))
         if i % 100 == 0:
             print("Step {}: NLL: {}".format(i, neg_log_likelihood_))
     print("Final NLL: {}".format(neg_log_likelihood_))

@@ -7,9 +7,8 @@ from tf_rl.common.utils import *
 from tf_rl.agents.DDPG import DDPG
 from tf_rl.common.params import DDPG_ENV_LIST
 from tf_rl.common.networks import DDPG_Actor as Actor, DDPG_Critic as Critic
-from utils.common import flatten_weight
-from sklearn.gaussian_process import GaussianProcessRegressor
-from sklearn.gaussian_process.kernels import DotProduct, WhiteKernel
+from utils.common import flatten_weight, test_Agent_DDPG, plotting_fn
+from utils.gp_models import sklearn_GP_model
 
 eager_setup()
 
@@ -32,7 +31,8 @@ DDPG_ENV_LIST = {
 parser = argparse.ArgumentParser()
 parser.add_argument("--env_name", default="Ant-v2", help="Env title")
 parser.add_argument("--seed", default=123, type=int, help="seed for randomness")
-parser.add_argument("--num_frames", default=1_000_000, type=int, help="total frame in a training")
+# parser.add_argument("--num_frames", default=1_000_000, type=int, help="total frame in a training")
+parser.add_argument("--num_frames", default=500_000, type=int, help="total frame in a training")
 parser.add_argument("--train_interval", default=100, type=int, help="a frequency of training in training phase")
 parser.add_argument("--nb_train_steps", default=50, type=int, help="a number of training after one episode")
 parser.add_argument("--eval_interval", default=10_000, type=int, help="a frequency of evaluation in training phase")
@@ -72,8 +72,7 @@ summary_writer = tf.contrib.summary.create_file_writer(params.log_dir)
 
 init_state = env.reset()  # reset
 agent.predict(init_state)  # burn the format of the input matrix to get the weight matrices!!
-KERNEL = DotProduct() + WhiteKernel()
-gp_model = GaussianProcessRegressor(kernel=KERNEL, random_state=0)
+gp_model = sklearn_GP_model()
 num_sample = 100  # number of sampling
 
 get_ready(agent.params)
@@ -86,7 +85,7 @@ with summary_writer.as_default():
     # for summary purpose, we put all codes in this context
     with tf.contrib.summary.always_record_summaries():
         policies, scores = list(), list()
-        _stds, _means = list(), list()
+        preds, evals = list(), list()
         for i in itertools.count():
             state = env.reset()
             total_reward = 0
@@ -144,27 +143,39 @@ with summary_writer.as_default():
 
             # === Train the GP Net ===
             if agent.eval_flg:
-                # TODO: add the buffer for storing gp_model's predictions and the actual evaluation result
+                weights_vec = flatten_weight(agent.actor.get_weights())
                 gp_model.fit(np.array(policies), np.array(scores))
                 sample_ = gp_model.sample_y(weights_vec[np.newaxis, ...], n_samples=num_sample)
-                test_Agent_DDPG(agent, env, n_trial=10)
-                print("Mean Est Return: {:.2f} | STD Est Return: {:.2f}".format(i, sample_.mean(), sample_.std()))
+                eval_scores = test_Agent_DDPG(agent, env, n_trial=10)
+                print("Evaluation Mode => Mean Return: {:.2f} | STD Return: {:.2f} | Mean Est Return: {:.2f} | STD Est Return: {:.2f}"
+                      .format(i, eval_scores.mean(), eval_scores.std(), sample_.mean(), sample_.std()))
 
                 # visualisation purpose
-                _stds.append(sample_.std())
-                _means.append(sample_.mean())
+                preds.append(sample_)
+                evals.append(eval_scores)
 
                 # After training processes
                 scores.append(total_reward)
-                weights_vec = flatten_weight(agent.actor.get_weights())
                 policies.append(weights_vec)
                 agent.eval_flg = False
 
             # check the stopping condition
             if global_timestep.numpy() > agent.params.num_frames:
                 print("=== Training is Done ===")
+                gp_model.fit(np.array(policies), np.array(scores))
+                sample_ = gp_model.sample_y(weights_vec[np.newaxis, ...], n_samples=num_sample)
+                eval_scores = test_Agent_DDPG(agent, env, n_trial=10)
+                print("Final Evaluation Mode => Mean Return: {:.2f} | STD Return: {:.2f} | Mean Est Return: {:.2f} | STD Est Return: {:.2f}"
+                      .format(i, eval_scores.mean(), eval_scores.std(), sample_.mean(), sample_.std()))
+
+                # visualisation purpose
+                preds.append(sample_)
+                evals.append(eval_scores)
                 test_Agent_DDPG(agent, env, n_trial=agent.params.test_episodes)
                 env.close()
                 break
 
         # TODO: Add the visualisation step to plot the est return and actual return line graph at eval phase!!
+        preds, evals = np.array(preds)[:, 0, :], np.array(evals)[:, 0, :]
+        print(preds.shape, evals.shape)
+        plotting_fn(preds, evals)
