@@ -1,12 +1,11 @@
 import tensorflow as tf
-import tensorflow_probability as tfp
-
-tfd = tfp.distributions
 import numpy as np
+import tensorflow_probability as tfp
 from utils.common import flatten_weight
 from sklearn.gaussian_process import GaussianProcessRegressor
 from sklearn.gaussian_process.kernels import DotProduct, WhiteKernel
 
+tfd = tfp.distributions
 
 def create_variational_GP_model(weights, kernel_fn):
     """
@@ -106,7 +105,7 @@ def create_TF_GP_model(weights, kernel_fn):
     return model
 
 
-def create_bayes_net():
+def create_bayes_net(batch_size=32):
     class Model(tf.keras.Model):
         """ Variational Gaussian Process Network """
 
@@ -122,13 +121,16 @@ def create_bayes_net():
             mean_ = self.mean(x)
             return tfd.Normal(loc=mean_, scale=self.std)  # assumed to follow Gaussian Distribution
 
-    def update(model, optimiser, x, y):
+    def update(model, optimiser, x, y, num_update=10):
         """ Temp function to update the weights of Bayes net """
-        with tf.GradientTape() as tape:
-            pred = model(x)
-            neg_log_likelihood = -tf.reduce_mean(input_tensor=pred.log_prob(y)) # TODO: Is NLL an appropriate loss func?
-        grads = tape.gradient(neg_log_likelihood, model.trainable_weights)  # get gradients
-        optimiser.apply_gradients(zip(grads, model.trainable_weights))  # apply gradients to the network
+        for _ in range(num_update):
+            indices = np.random.randint(0, x.shape[0], size=batch_size)
+            x = x[indices, ...]
+            with tf.GradientTape() as tape:
+                pred = model(x)
+                neg_log_likelihood = -tf.reduce_mean(input_tensor=pred.log_prob(y)) # TODO: Is NLL an appropriate loss func?
+            grads = tape.gradient(neg_log_likelihood, model.trainable_weights)  # get gradients
+            optimiser.apply_gradients(zip(grads, model.trainable_weights))  # apply gradients to the network
         return model, neg_log_likelihood
 
     return Model(), update

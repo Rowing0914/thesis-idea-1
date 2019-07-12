@@ -33,6 +33,7 @@ parser.add_argument("--env_name", default="Ant-v2", help="Env title")
 parser.add_argument("--seed", default=123, type=int, help="seed for randomness")
 # parser.add_argument("--num_frames", default=1_000_000, type=int, help="total frame in a training")
 parser.add_argument("--num_frames", default=500_000, type=int, help="total frame in a training")
+# parser.add_argument("--num_frames", default=30_000, type=int, help="total frame in a training")
 parser.add_argument("--train_interval", default=100, type=int, help="a frequency of training in training phase")
 parser.add_argument("--nb_train_steps", default=50, type=int, help="a number of training after one episode")
 parser.add_argument("--eval_interval", default=10_000, type=int, help="a frequency of evaluation in training phase")
@@ -146,7 +147,7 @@ with summary_writer.as_default():
             if agent.eval_flg:
                 weights_vec = flatten_weight(agent.actor.get_weights())
                 update(gp_model, optimiser, np.array(policies), np.array(scores))
-                sample_ = gp_model(weights_vec[np.newaxis, ...]).sample(num_sample).numpy()
+                sample_ = gp_model(weights_vec[np.newaxis, ...]).sample(num_sample).numpy().flatten()
                 eval_scores = test_Agent_DDPG(agent, env, n_trial=10)
                 print("Evaluation Mode => Mean Return: {:.2f} | STD Return: {:.2f} | Mean Est Return: {:.2f} | STD Est Return: {:.2f}"
                       .format(i, eval_scores.mean(), eval_scores.std(), sample_.mean(), sample_.std()))
@@ -166,6 +167,10 @@ with summary_writer.as_default():
                 env.close()
                 break
 
-        preds, evals = np.array(preds)[:, 0, :], np.array(evals)[:, 0, :]
+        # TODO: the resulting graph doesn't look correct, since the preds' line is straight and not varying at all
+        # you need to check if the collected values are correct...
+        preds, evals = np.array(preds), np.array(evals)
+        print(preds.shape, evals.shape)
+        preds, evals = preds, evals[:, 0, :]
         print(preds.shape, evals.shape)
         plotting_fn(preds, evals)
