@@ -1,5 +1,4 @@
 import argparse, time
-import tensorflow as tf
 import tensorflow_probability as tfp
 from matplotlib import pyplot as plt
 from collections import deque
@@ -8,9 +7,9 @@ from tf_rl.common.utils import *
 from tf_rl.common.policy import EpsilonGreedyPolicy_eager
 from tf_rl.common.networks import CartPole as Model
 from tf_rl.agents.DQN import DQN_cartpole
-from utils.kernels import RBFKernelFn
-from utils.gp_models import create_model, create_TF_GP
-from utils.common import flatten_weight
+from src.common.kernels import RBFKernelFn
+from src.common.gp_models import create_model
+from src.common.utils import flatten_weight
 
 tfd = tfp.distributions
 

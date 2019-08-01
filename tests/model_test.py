@@ -1,6 +1,6 @@
 from tf_rl.common.utils import eager_setup
-from utils.gp_models import *
-from utils.kernels import RBFKernelFn
+from src.common.gp_models import *
+from src.common import RBFKernelFn
 
 eager_setup()
 

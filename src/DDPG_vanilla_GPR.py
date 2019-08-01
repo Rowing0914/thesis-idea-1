@@ -1,14 +1,13 @@
 import time
 import argparse
-import tensorflow as tf
 from collections import deque
 from tf_rl.common.memory import ReplayBuffer
 from tf_rl.common.utils import *
 from tf_rl.agents.DDPG import DDPG
 from tf_rl.common.params import DDPG_ENV_LIST
 from tf_rl.common.networks import DDPG_Actor as Actor, DDPG_Critic as Critic
-from utils.common import flatten_weight, test_Agent_DDPG, plotting_fn
-from utils.gp_models import sklearn_GP_model
+from src.common.utils import flatten_weight, test_Agent_DDPG, plotting_fn
+from src.common.gp_models import sklearn_GP_model
 
 eager_setup()
 
@@ -29,7 +28,7 @@ DDPG_ENV_LIST = {
 """
 
 parser = argparse.ArgumentParser()
-parser.add_argument("--env_name", default="Ant-v2", help="Env title")
+parser.add_argument("--env_name", default="Hopper-v2", help="Env title")
 parser.add_argument("--seed", default=123, type=int, help="seed for randomness")
 # parser.add_argument("--num_frames", default=1_000_000, type=int, help="total frame in a training")
 parser.add_argument("--num_frames", default=500_000, type=int, help="total frame in a training")
@@ -85,7 +84,7 @@ with summary_writer.as_default():
     # for summary purpose, we put all codes in this context
     with tf.contrib.summary.always_record_summaries():
         policies, scores = list(), list()
-        preds, evals = list(), list()
+        preds_mean, preds_std, evals_mean, evals_std = list(), list(), list(), list()
         for i in itertools.count():
             state = env.reset()
             total_reward = 0
@@ -147,12 +146,15 @@ with summary_writer.as_default():
                 gp_model.fit(np.array(policies), np.array(scores))
                 sample_ = gp_model.sample_y(weights_vec[np.newaxis, ...], n_samples=num_sample)
                 eval_scores = test_Agent_DDPG(agent, env, n_trial=10)
-                print("Evaluation Mode => Mean Return: {:.2f} | STD Return: {:.2f} | Mean Est Return: {:.2f} | STD Est Return: {:.2f}"
-                      .format(i, eval_scores.mean(), eval_scores.std(), sample_.mean(), sample_.std()))
+                print(
+                    "Evaluation Mode => Mean Return: {:.2f} | STD Return: {:.2f} | Mean Est Return: {:.2f} | STD Est Return: {:.2f}"
+                    .format(eval_scores.mean(), eval_scores.std(), sample_.mean(), sample_.std()))
 
                 # visualisation purpose
-                preds.append(sample_)
-                evals.append(eval_scores)
+                evals_mean.append(eval_scores.mean())
+                evals_std.append(eval_scores.std())
+                preds_mean.append(sample_.mean())
+                preds_std.append(sample_.std())
 
                 # After training processes
                 scores.append(total_reward)
@@ -162,20 +164,11 @@ with summary_writer.as_default():
             # check the stopping condition
             if global_timestep.numpy() > agent.params.num_frames:
                 print("=== Training is Done ===")
-                gp_model.fit(np.array(policies), np.array(scores))
-                sample_ = gp_model.sample_y(weights_vec[np.newaxis, ...], n_samples=num_sample)
-                eval_scores = test_Agent_DDPG(agent, env, n_trial=10)
-                print("Final Evaluation Mode => Mean Return: {:.2f} | STD Return: {:.2f} | Mean Est Return: {:.2f} | STD Est Return: {:.2f}"
-                      .format(i, eval_scores.mean(), eval_scores.std(), sample_.mean(), sample_.std()))
-
-                # visualisation purpose
-                preds.append(sample_)
-                evals.append(eval_scores)
-                test_Agent_DDPG(agent, env, n_trial=agent.params.test_episodes)
                 env.close()
                 break
 
-        # TODO: Add the visualisation step to plot the est return and actual return line graph at eval phase!!
-        preds, evals = np.array(preds)[:, 0, :], np.array(evals)[:, 0, :]
-        print(preds.shape, evals.shape)
-        plotting_fn(preds, evals)
+        np.save("policy_weight", np.array(policies))
+        np.save("scores", np.array(scores))
+        preds_mean, preds_std, evals_mean, evals_std = np.array(preds_mean), np.array(preds_std), np.array(
+            evals_mean), np.array(evals_std)
+        plotting_fn(preds_mean, preds_std, evals_mean, evals_std)

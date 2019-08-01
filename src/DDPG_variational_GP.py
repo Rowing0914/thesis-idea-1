@@ -7,7 +7,8 @@ from tf_rl.agents.DDPG import DDPG
 from tf_rl.common.params import DDPG_ENV_LIST
 from tf_rl.common.networks import DDPG_Actor as Actor, DDPG_Critic as Critic
 from src.common.utils import flatten_weight, test_Agent_DDPG, plotting_fn
-from src.common.gp_models import create_bayes_net
+from src.common.kernels import RBFKernelFn
+from src.common.gp_models import create_variational_GP_model
 
 eager_setup()
 
@@ -72,8 +73,9 @@ summary_writer = tf.contrib.summary.create_file_writer(params.log_dir)
 
 init_state = env.reset()  # reset
 agent.predict(init_state)  # burn the format of the input matrix to get the weight matrices!!
-gp_model, update = create_bayes_net()
-optimiser = tf.compat.v1.train.AdamOptimizer()
+gp_model = create_variational_GP_model(weights=agent.actor.get_weights(), kernel_fn=RBFKernelFn)
+batch_size = 32
+num_epochs = 10  # number of training of GP
 num_sample = 100  # number of sampling
 
 get_ready(agent.params)
@@ -142,11 +144,11 @@ with summary_writer.as_default():
                 weights_vec = flatten_weight(agent.actor.get_weights())
                 policies.append(weights_vec)
 
-            # === Train the Bayes Net ===
+            # === Train the GPR ===
             if agent.eval_flg:
-                weights_vec = flatten_weight(agent.actor.get_weights())
-                update(gp_model, optimiser, np.array(policies), np.array(scores))
-                sample_ = gp_model(weights_vec[np.newaxis, ...]).sample(num_sample).numpy().flatten()
+                history = gp_model.fit(np.array(policies), np.array(scores), batch_size=batch_size, epochs=num_epochs,
+                                       verbose=False)
+                sample_ = gp_model(weights_vec[np.newaxis, ...]).sample(num_sample).numpy()  # use the latest weights
                 eval_scores = test_Agent_DDPG(agent, env, n_trial=10)
                 print(
                     "Evaluation Mode => Mean Return: {:.2f} | STD Return: {:.2f} | Mean Est Return: {:.2f} | STD Est Return: {:.2f}"
@@ -169,8 +171,6 @@ with summary_writer.as_default():
                 env.close()
                 break
 
-        np.save("policy_weight", np.array(policies))
-        np.save("scores", np.array(scores))
         preds_mean, preds_std, evals_mean, evals_std = np.array(preds_mean), np.array(preds_std), np.array(
             evals_mean), np.array(evals_std)
         plotting_fn(preds_mean, preds_std, evals_mean, evals_std)

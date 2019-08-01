@@ -9,8 +9,8 @@ import tensorflow_probability as tfp
 from tf_rl.common.utils import *
 from tf_rl.common.networks import CartPole as Model
 from tf_rl.agents.DQN import DQN_cartpole
-from utils.kernels import RBFKernelFn
-from utils.gp_models import create_model
+from src.common import RBFKernelFn
+from src.common.gp_models import create_model
 
 tfd = tfp.distributions
 

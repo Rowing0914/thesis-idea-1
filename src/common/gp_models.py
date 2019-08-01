@@ -1,7 +1,7 @@
 import tensorflow as tf
 import numpy as np
 import tensorflow_probability as tfp
-from utils.common import flatten_weight
+from src.common.utils import flatten_weight
 from sklearn.gaussian_process import GaussianProcessRegressor
 from sklearn.gaussian_process.kernels import DotProduct, WhiteKernel
 

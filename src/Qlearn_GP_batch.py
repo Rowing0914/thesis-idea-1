@@ -6,8 +6,8 @@ import tensorflow_probability as tfp
 from matplotlib import pyplot as plt
 from tf_rl.common.utils import AnnealingSchedule, eager_setup
 from tf_rl.common.wrappers import DiscretisedEnv
-from utils.kernels import RBFKernelFn
-from utils.gp_models import create_model
+from src.common.utils import RBFKernelFn
+from src.common.gp_models import create_model
 
 eager_setup()
 
